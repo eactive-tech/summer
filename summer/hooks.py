@@ -79,6 +79,10 @@ app_license = "mit"
 # 	"filters": "summer.utils.jinja_filters"
 # }
 
+jinja = {
+	"methods": ["summer.einvoice.get_qr_code"]
+}
+
 # Installation
 # ------------
 
@@ -137,13 +141,13 @@ app_license = "mit"
 # ---------------
 # Hook on document methods and events
 
-# doc_events = {
-# 	"*": {
-# 		"on_update": "method",
-# 		"on_cancel": "method",
-# 		"on_trash": "method"
-# 	}
-# }
+doc_events = {	
+    "Sales Invoice": {
+        "on_submit": [
+            "summer.einvoice.sign_einvoice"
+        ]
+    }
+}
 
 # Scheduled Tasks
 # ---------------
