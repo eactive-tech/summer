@@ -18,6 +18,10 @@ def sign_einvoice(doc, method):
     if doc.return_against:
         rel_doc_number = frappe.db.get_value("Sales Invoice", doc.return_against, "custom_cu_invoice_number")
 
+    if doc.custom_return_against_previous_year:
+        rel_doc_number = doc.custom_return_against_previous_year
+
+
     req = {
         "invoice_date": frappe.utils.format_date(str(doc.posting_date),"dd_MM_Y"), # "25_02_2022"
         "invoice_number": doc.name, # "250220221134"
